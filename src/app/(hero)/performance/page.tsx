@@ -6,8 +6,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Performance',
 }
+
 export default function Page() {
   return (
-    <Hero imgUrl={performanceSrc} altTxt="Performance" content="Performance~~~" />
+    <Hero imgUrl={performanceSrc} altTxt="Performance" content="We serve high performance applications." />
   )
 }
