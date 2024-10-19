@@ -1,14 +1,10 @@
-import React from "react";
-import homeSrc from "/public/home.jpg";
-import Hero from "@/components/hero";
-import { Metadata } from "next";
+import React from 'react';
+import { Button } from 'antd';
 
-export const metadata: Metadata = {
-  title: 'Home',
-}
+const Home = () => (
+  <div className="App">
+    <Button type="primary">Button</Button>
+  </div>
+);
 
-export default function Page() {
-  return (
-    <Hero imgUrl={homeSrc} altTxt="Home" content="Professional Cloud Hosting" />
-  );
-}
+export default Home;

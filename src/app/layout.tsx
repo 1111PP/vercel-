@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Comforter } from "next/font/google";
 import "./globals.css";
-
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 const comforter = Comforter({ subsets: ["latin"], weight: '400' });
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
-        {children}
+        <AntdRegistry>{children}</AntdRegistry>
       </body>
     </html>
   );
