@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={comforter.className}>
+      <body >
         {children}
       </body>
     </html>
