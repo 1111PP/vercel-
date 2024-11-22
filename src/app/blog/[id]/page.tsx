@@ -10,7 +10,7 @@ async function getData(id: string) {
 
   return r
 }
-export default function page(props: any) {
+export default function Page(props: any) {
   const { id } = props.params
   const [blogData, setBlogData] = useState<any>(null)
   const router = useRouter()

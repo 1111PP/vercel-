@@ -1,5 +1,5 @@
 import React from 'react'
-
-export default function page({ children }: { children: React.ReactNode }) {
+function Page({ children }: any) {
   return <div>{children}</div>
 }
+export default Page

@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -10,7 +9,7 @@ import {
   FormOutlined,
 } from '@ant-design/icons'
 
-export default function Page() {
+export default async function Page() {
   const [blogData, setBlogData] = useState<any>(null)
   const router = useRouter()
 
@@ -28,7 +27,7 @@ export default function Page() {
   }
 
   useEffect(() => {
-    fetchBlogData()
+    // fetchBlogData()
   }, [])
   const delPost = (id: string) => {
     return fetch(`/api/blog`, {
@@ -111,8 +110,7 @@ export default function Page() {
 
 const getData = async () => {
   const res = await fetch('http://localhost:3000/api/blog/', {
-    method: 'GET',
-    cache: 'no-store',
+    // next: { revalidate: 10 },
   })
   const { data } = await res.json()
   console.log('getData', data)

@@ -14,7 +14,7 @@ export async function GET(request: NextRequest, { params }: ParamsTYPE) {
   } else {
     data = db.data.posts
   }
-  console.log('GET /blog/ route', data)
+  // console.log('GET /blog/ route', data)
 
   return NextResponse.json({ data })
 }

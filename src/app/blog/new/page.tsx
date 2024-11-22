@@ -3,14 +3,17 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Button, message } from 'antd'
 import { useRouter, usePathname } from 'next/navigation'
+
 enum modeEnum {
   NEW = '0',
   EDIT = '1',
 }
+
 const modelMap = {
   [modeEnum.NEW]: 'Create New Post',
   [modeEnum.EDIT]: 'Edit Post',
 }
+
 const { TextArea } = Input
 
 const getData = async (id: string) => {
@@ -22,8 +25,12 @@ const getData = async (id: string) => {
   return data
 }
 
-function NewPost(props: { id: string }) {
-  const currModel = props?.id ? modeEnum.EDIT : modeEnum.NEW
+interface Props {
+  params: { id?: string }
+}
+
+export default function NewPost(props: any) {
+  const currModel = props.params?.id ? modeEnum.EDIT : modeEnum.NEW
   const pathname = usePathname()
   const [postId, setPostId] = useState('')
   const [title, setTitle] = useState('')
@@ -67,6 +74,7 @@ function NewPost(props: { id: string }) {
       setLoading(false)
     }
   }
+
   useEffect(() => {
     const fetchData = async () => {
       console.log(modelMap[currModel], 'currModel')
@@ -89,6 +97,7 @@ function NewPost(props: { id: string }) {
     }
     fetchData()
   }, [])
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl mt-5 font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
@@ -147,4 +156,3 @@ function NewPost(props: { id: string }) {
     </div>
   )
 }
-export default NewPost

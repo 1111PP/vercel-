@@ -11,31 +11,26 @@ export default function PageLayout({
   children: React.ReactNode
 }) {
   return (
-    <Layout className="min-h-screen">
-      <Header className="fixed w-full z-10 bg-white shadow-md">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <Link
-            href="/"
-            className="text-2xl font-bold text-gray-800 no-underline"
-          >
-            MyBlog
-          </Link>
-          <Menu
-            mode="horizontal"
-            className="border-none"
-          >
-            <Menu.Item key="home">
-              <Link href="/">Home</Link>
-            </Menu.Item>
-            <Menu.Item key="posts">
-              <Link href="/posts">Posts</Link>
-            </Menu.Item>
-            <Menu.Item key="new">
-              <Link href="/posts/new">New Post</Link>
-            </Menu.Item>
-          </Menu>
+    <div className="min-h-screen">
+      <header className="flex !h-[100px] sticky z-[999] top-0 !bg-white w-full items-center justify-between shadow-md">
+        <div
+          className="z-[999] font-bold text-2xl "
+          style={{ marginLeft: '30px' }}
+        >
+          MyBlog
         </div>
-      </Header>
+        <Menu mode="horizontal">
+          <Menu.Item key="home">
+            <Link href="/">Home</Link>
+          </Menu.Item>
+          <Menu.Item key="posts">
+            <Link href="/posts">Posts</Link>
+          </Menu.Item>
+          <Menu.Item key="new">
+            <Link href="/posts/new">New Post</Link>
+          </Menu.Item>
+        </Menu>
+      </header>
       <Content className="mt-16 min-h-[calc(100vh-64px-70px)]">
         {children}
       </Content>
@@ -53,6 +48,6 @@ export default function PageLayout({
           MyBlog ©{new Date().getFullYear()} Created with ❤️
         </div>
       </Footer>
-    </Layout>
+    </div>
   )
 }
