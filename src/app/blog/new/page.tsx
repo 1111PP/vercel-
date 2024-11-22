@@ -3,14 +3,17 @@
 import React, { useEffect, useState } from 'react'
 import { Input, Button, message } from 'antd'
 import { useRouter, usePathname } from 'next/navigation'
+
 enum modeEnum {
   NEW = '0',
   EDIT = '1',
 }
+
 const modelMap = {
   [modeEnum.NEW]: 'Create New Post',
   [modeEnum.EDIT]: 'Edit Post',
 }
+
 const { TextArea } = Input
 
 const getData = async (id: string) => {
@@ -22,11 +25,13 @@ const getData = async (id: string) => {
   return data
 }
 
-interface NewPostProps {
-  id: string
+interface Props {
+  params?: { id?: string }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }
-function NewPost(props: NewPostProps) {
-  const currModel = props?.id ? modeEnum.EDIT : modeEnum.NEW
+
+export default function NewPost({ params, searchParams }: Props) {
+  const currModel = params?.id ? modeEnum.EDIT : modeEnum.NEW
   const pathname = usePathname()
   const [postId, setPostId] = useState('')
   const [title, setTitle] = useState('')
@@ -70,6 +75,7 @@ function NewPost(props: NewPostProps) {
       setLoading(false)
     }
   }
+
   useEffect(() => {
     const fetchData = async () => {
       console.log(modelMap[currModel], 'currModel')
@@ -92,6 +98,7 @@ function NewPost(props: NewPostProps) {
     }
     fetchData()
   }, [])
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl mt-5 font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
@@ -150,4 +157,3 @@ function NewPost(props: NewPostProps) {
     </div>
   )
 }
-export default NewPost
