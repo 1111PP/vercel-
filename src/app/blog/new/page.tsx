@@ -26,12 +26,11 @@ const getData = async (id: string) => {
 }
 
 interface Props {
-  params?: { id?: string }
-  searchParams?: { [key: string]: string | string[] | undefined }
+  params: { id?: string }
 }
 
-export default function NewPost({ params, searchParams }: Props) {
-  const currModel = params?.id ? modeEnum.EDIT : modeEnum.NEW
+export default function NewPost(props: any) {
+  const currModel = props.params?.id ? modeEnum.EDIT : modeEnum.NEW
   const pathname = usePathname()
   const [postId, setPostId] = useState('')
   const [title, setTitle] = useState('')
