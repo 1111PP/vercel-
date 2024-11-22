@@ -1,24 +1,51 @@
 'use client'
-import React from 'react'
-import { usePathname } from 'next/navigation'
-async function getData() {
-  console.log('请求数据')
-
-  const res = await fetch('http://localhost:3000/api/blog', {
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+async function getData(id: string) {
+  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
     method: 'POST',
-    cache: 'force-cache',
-    headers: {
-      'Content-Type': 'application/json', // 设置请求头为 JSON
-    },
-    body: JSON.stringify({ id: '1' }),
   })
-  const r = await res.json()
+  const { data: r } = await res.json()
+  console.log('请求数据', r)
 
   return r
 }
-export default async function page() {
-  const pathname = usePathname()
-  console.log(pathname)
-  //   const r = await getData()
-  return <div>详情页面</div>
+export default function page(props: any) {
+  const { id } = props.params
+  const [blogData, setBlogData] = useState<any>(null)
+  const router = useRouter()
+  useEffect(() => {
+    const fetchList = async () => {
+      const { postData: data } = await getData(id)
+      // console.log('data', data)
+      setBlogData(data)
+    }
+    fetchList()
+  }, [id])
+  if (!blogData) return <div>Loading...</div>
+  return (
+    <div>
+      <h1
+        onClick={() => {
+          router.push(`/blog`)
+        }}
+      >
+        详情页面
+      </h1>
+      <div>
+        <ul>
+          {blogData &&
+            Object.entries(blogData).map(([key, value]: any) => {
+              return (
+                <li key={key}>
+                  <span>
+                    {key} : {value}
+                  </span>
+                </li>
+              )
+            })}
+        </ul>
+      </div>
+    </div>
+  )
 }

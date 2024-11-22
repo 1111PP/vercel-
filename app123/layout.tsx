@@ -1,6 +1,6 @@
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 import './globals.css'
-import PageLayout from '@/web/components/PageLayout'
+import PageLayout from './components/PageLayout'
 
 export default function RootLayout({
   children,
@@ -10,7 +10,9 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body>
-        <PageLayout>{children}</PageLayout>
+        <AntdRegistry>
+          <PageLayout>{children}</PageLayout>
+        </AntdRegistry>
       </body>
     </html>
   )
