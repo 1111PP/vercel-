@@ -22,7 +22,10 @@ const getData = async (id: string) => {
   return data
 }
 
-function NewPost(props: { id: string }) {
+interface NewPostProps {
+  id: string
+}
+function NewPost(props: NewPostProps) {
   const currModel = props?.id ? modeEnum.EDIT : modeEnum.NEW
   const pathname = usePathname()
   const [postId, setPostId] = useState('')
